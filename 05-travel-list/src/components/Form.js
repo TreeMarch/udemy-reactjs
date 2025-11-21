@@ -28,6 +28,7 @@ export default function Form({ onAddItem }) {
         placeholder="Item..."
         value={description}
         onChange={(e) => setDescription(e.target.value)}
+        required
       ></input>
       <button>Add</button>
     </form>

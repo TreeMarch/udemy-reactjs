@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Logo from "./Logo";
 import Form from "./Form";
-import PackingList  from "./PackingList";
-import Stats  from "./Stats";
+import PackingList from "./PackingList";
+import Stats from "./Stats";
 
 // const initialItems = [
 //   { id: 1, description: "Passports", quantity: 2, packed: false },
@@ -11,8 +11,10 @@ import Stats  from "./Stats";
 // ];
 
 export default function App() {
-  const [items, setItems] = useState([]);
-
+  const [items, setItems] = useState(() => {
+    return JSON.parse(localStorage.getItem("items")) || [];
+  });
+  
   function handleAddItem(item) {
     setItems((items) => [...items, item]);
   }
@@ -28,10 +30,14 @@ export default function App() {
       )
     );
   }
-  function handleClearList(){
-    const confirmed = window.confirm("Are you sure want to clear everything ?")
-    if(confirmed) setItems([])
+  function handleClearList() {
+    const confirmed = window.confirm("Are you sure want to clear everything ?");
+    if (confirmed) setItems([]);
   }
+
+  useEffect(() => {
+    localStorage.setItem("items",JSON.stringify(items));
+  },[items])
 
   return (
     <div className="app">
@@ -47,7 +53,3 @@ export default function App() {
     </div>
   );
 }
-
-
-
-

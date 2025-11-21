@@ -1,4 +1,4 @@
-export default function Item({ item, onDeleteItem, onToggleItem }) {
+export default function Item({ item, onDeleteItem, onToggleItem, onViewDetail }) {
   return (
     <div>
       <li>
@@ -9,6 +9,7 @@ export default function Item({ item, onDeleteItem, onToggleItem }) {
         <span style={item.packed ? { textDecoration: "line-through" } : {}}>
           {item.quantity} {item.description}
         </span>
+        {/* <button onClick={() => onViewDetail(item)}>👁️</button> */}
         <button onClick={() => onDeleteItem(item.id)}>❌</button>
       </li>
     </div>
